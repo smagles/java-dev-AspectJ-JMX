@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class UserInputProcessor {
-    private TextCaseConverter textCaseConverter;
-    private LoggingControlMBean mbean;
+    private final TextCaseConverter textCaseConverter;
+    private final LoggingControlMBean mbean;
     private static final Logger LOGGER = Logger.getLogger(UserInputProcessor.class.getName());
 
     public UserInputProcessor(TextCaseConverter textCaseConverter, LoggingControlMBean mbean) {
