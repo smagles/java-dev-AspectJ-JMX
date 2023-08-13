@@ -5,12 +5,16 @@ import org.springframework.stereotype.Component;
 @Component("caseConverterBean")
 
 public class TextCaseConverter {
-    public String convertCase(String input) {
+    public String convertCase(String text) {
+        if (text == null || text.trim().length() <= 1) {
+            throw new IllegalArgumentException("Рядок введення не може бути порожнім або містити лише одну букву.");
+        }
+
         StringBuilder transformedCase = new StringBuilder();
         StringBuilder currentWord = new StringBuilder();
 
-        for (int i = 0; i < input.length(); i++) {
-            char currentChar = input.charAt(i);
+        for (int i = 0; i < text.length(); i++) {
+            char currentChar = text.charAt(i);
 
             if (Character.isLetter(currentChar)) {
                 currentWord.append(currentChar);

@@ -1,5 +1,6 @@
 package org.example.converter.aspectj;
 
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Pointcut;
@@ -13,7 +14,6 @@ import java.util.logging.Logger;
 public class LoggingAspect {
     private static final Logger LOGGER = Logger.getLogger(LoggingAspect.class.getName());
 
-
     @Pointcut("execution(public String org.example.converter.TextCaseConverter.convertCase(String)) && args(text)")
     private void convertCase(String text) {
     }
@@ -23,4 +23,11 @@ public class LoggingAspect {
         LOGGER.info("Початковий рядок: " + text);
         LOGGER.info("Перетворений рядок: " + transformedCase);
     }
+
+    @AfterThrowing(pointcut = "convertCase(*)", throwing = "exception")
+    public void afterThrowingConvertCase(Throwable exception){
+        LOGGER.info("Логування виключення " + exception);
+    }
 }
+
+

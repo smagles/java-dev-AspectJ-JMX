@@ -4,6 +4,7 @@ import org.example.converter.TextCaseConverter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TextCaseConverterTest {
     @Test
@@ -49,15 +50,14 @@ class TextCaseConverterTest {
 
         TextCaseConverter textCaseConverter = new TextCaseConverter();
 
-        //When
-        final String input = "";
-        final String result = textCaseConverter.convertCase(input);
+
+        //When & Then
+        final String text = "";
+        assertThrows(IllegalArgumentException.class, () -> textCaseConverter.convertCase(text));
 
 
-        //Then
-        final String expected = "";
-        assertEquals(expected, result);
     }
+
 
     @Test
     void testConvertSingleLetter() {
@@ -65,13 +65,10 @@ class TextCaseConverterTest {
 
         TextCaseConverter textCaseConverter = new TextCaseConverter();
 
-        //When
-        final String input = "A";
-        final String result = textCaseConverter.convertCase(input);
+        //When & Then
+        final String text = "A";
+        assertThrows(IllegalArgumentException.class, () -> textCaseConverter.convertCase(text));
 
-        //Then
-        final String expected = "";
-        assertEquals(expected, result);
     }
 
     @Test

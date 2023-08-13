@@ -33,10 +33,16 @@ public class UserInputProcessor {
                     LOGGER.info("Помилка при зміні стану логування: " + e.getMessage());
                 }
             } else {
-                processInput(input);
+                try {
+                    processInput(input);
+                } catch (Exception e) {
+                    LOGGER.info("Помилка обробки вводу: " + e.getMessage());
+                }
             }
         }
+        scanner.close();
     }
+
 
     private void toggleLogging() {
         if (mbean.isLoggingEnabled()) {
